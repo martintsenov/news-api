@@ -18,7 +18,7 @@ class NewsController
     
     public function news()
     {
-        /* @var $response \GuzzleHttp\Psr7\Response*/
+        /* @var $data array */
         $data = $this->newsService->getData();
 
         return $data;
