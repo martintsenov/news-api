@@ -20,7 +20,10 @@ $app->register(new SilexGuzzle\GuzzleServiceProvider(), [
 ]);
 
 $app['twig'] = $app->extend('twig', function ($twig, $app) {
-    // add custom globals, filters, tags, ...
+    $twig->addFunction(new \Twig_SimpleFunction('asset', function ($asset) {
+        $request = \Symfony\Component\HttpFoundation\Request::createFromGlobals();
+        return sprintf($request->getBaseUrl().'/%s', ltrim($asset, '/')); 
+    }));
 
     return $twig;
 });
@@ -35,7 +38,18 @@ $app['news.service'] = function() use ($app) {
 $app['news.controller'] = function () use ($app) {
     return new NewsController($app['news.service']);
 };
-
-$app->get('/news', 'news.controller:news');
+$app->get('/news', function () use ($app) {
+    /* @var $controller \NewsApp\Controller\NewsController */
+    $controller = $app['news.controller'];
+    $newsFeed = $controller->news();
+    
+    if (empty($newsFeed)) {
+        return $app['twig']->render('news/no-result.html.twig');
+    }
+    
+    return $app['twig']->render('news/news.html.twig', [
+        'newsFeed' => $newsFeed,
+    ]);
+});
 
 return $app;
