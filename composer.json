@@ -1,7 +1,6 @@
 {
-    "name": "fabpot/silex-skeleton",
-    "description": "A pre-configured skeleton for the Silex microframework",
-    "license": "MIT",
+    "name": "news-app",
+    "description": "",
     "type": "project",
     "require": {
         "php": ">=5.5.9",
@@ -21,20 +20,17 @@
         "symfony/security": "~2.8|^3.0",
         "symfony/translation": "~2.8|^3.0",
         "symfony/twig-bridge": "~2.8|^3.0",
-        "symfony/validator": "~2.8|^3.0"
+        "symfony/validator": "~2.8|^3.0",
+        "rebangm/silex-guzzlehttp-provider": "^2.0"
     },
     "autoload": {
-        "psr-0": { "": "src/" }
+        "psr-4": {
+          "NewsApp\\": "src/NewsApp"
+        }
     },
     "extra": {
         "branch-alias": {
             "dev-master": "2.0.x-dev"
         }
-    },
-    "scripts": {
-        "run": [
-            "echo 'Started web server on http://localhost:8888'",
-            "php -S localhost:8888 -t web"
-        ]
     }
 }
