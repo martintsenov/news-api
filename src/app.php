@@ -24,16 +24,18 @@ $app['twig'] = $app->extend('twig', function ($twig, $app) {
 
     return $twig;
 });
+$configArr = include __DIR__ . '/../config/configuration.php';
+$app['news.api.config'] = $configArr['newsApi'];
 $app['news.repository'] = function() use ($app) {
-    return new NewsRepository($app["guzzle"]);
+    return new NewsRepository($app['guzzle'], $app['news.api.config']);
 };
 $app['news.service'] = function() use ($app) {
-    return new NewsService($app["news.repository"]);
+    return new NewsService($app['news.repository']);
 };
-$app["news.controller"] = function () use ($app) {
+$app['news.controller'] = function () use ($app) {
     return new NewsController($app['news.service']);
 };
 
-$app->get("/news", "news.controller:news");
+$app->get('/news', 'news.controller:news');
 
 return $app;
