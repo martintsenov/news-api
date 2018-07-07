@@ -20,6 +20,7 @@ class NewsController
     {
         /* @var $response \GuzzleHttp\Psr7\Response*/
         $data = $this->newsService->getData();
+
         return $data;
     }
 }
