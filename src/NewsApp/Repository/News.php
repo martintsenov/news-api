@@ -36,7 +36,7 @@ class News implements RepositoryInterface
             $json = (string) $response->getBody();
             $data = json_decode($json, true);
             
-            return $data['articles']; 
+            return $data; 
         } catch (\Exception $ex) {
             throw new NewsApiException($ex->getMessage());
         } 
