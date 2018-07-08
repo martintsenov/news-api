@@ -9,6 +9,7 @@ Installation
 2. Prototype is build over Silex and PHP.
 3. Set Http server DocumentRoot to "<htdocs-folder-path>/news-api/web"
 4. Obtain and add in `config/configuration.php` News API key from `https://newsapi.org/s/hacker-news-api`
+5. Open news feed page with `http://<host_url>/news`
 
 Requirements
 ------------
