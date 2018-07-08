@@ -1,0 +1,9 @@
+.row .list-group :nth-child(even) {
+    background-color: #e6e8ed;
+}
+.row .list-group :nth-child(odd) {
+    background-color: #f2f3f7;
+}
+.row .list-group .header-row {
+    background-color: #ff6600;
+}

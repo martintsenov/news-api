@@ -4,12 +4,12 @@
     <div class="container">
         <div class="row">
             <ul class="list-group">
-                <li class="list-group-item font-weight-bold">
-                        News feed
-                    </li>
+                <li class="list-group-item font-weight-bold header-row">
+                    News feed
+                </li>
                 {% for value in newsFeed %}
-                    <li class="list-group-item text-sm-left text-secondary">
-                        <strong>{{value.publishedAt}}</strong> {{value.author}} | {{value.title}} | {{value.url}} | {{value.description}}
+                    <li class="list-group-item text-sm-left text-secondary {{ cycle(['even', 'odd'], loop.index0) }}">
+                        {{loop.index0 + 1}}. {{value.author}} ({{value.publishedAt}}) | {{value.title}} | {{value.url}} | {{value.description}}
                     </li>
                 {% endfor %}
             </ul>
