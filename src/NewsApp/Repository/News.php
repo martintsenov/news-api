@@ -24,11 +24,16 @@ class News implements RepositoryInterface
      * @return array
      * @throws NewsApiException
      */
-    public function data(): array
+    public function data(int $resultPerPage = 20): array
     {
         try {
             /* @var $response \GuzzleHttp\Psr7\Response */
-            $response = $this->guzzleClient->get($this->configArr['url'] . 'top-headlines?sources=hacker-news&apiKey=' . $this->configArr['apiKey']);
+            $url = sprintf('%severything?sources=hacker-news&pageSize=%d&apiKey=%s',
+                $this->configArr['url'],
+                $resultPerPage,
+                $this->configArr['apiKey']
+            );
+            $response = $this->guzzleClient->get($url);
             
             if ($response->getStatusCode() != 200) {
                 throw new NewsApiException('No result found');
