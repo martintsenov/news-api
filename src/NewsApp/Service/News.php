@@ -16,7 +16,7 @@ class News
     }
     
     /**
-     * Get all latest news
+     * Get and format the news data
      *
      * @return array
      */

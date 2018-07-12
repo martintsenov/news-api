@@ -19,6 +19,7 @@ class News implements RepositoryInterface
     }
   
     /**
+     * Get news data feed
      *
      * @return array
      * @throws NewsApiException
