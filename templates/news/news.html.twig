@@ -9,7 +9,9 @@
                 </li>
                 {% for value in newsFeed %}
                     <li class="list-group-item text-sm-left text-secondary {{ cycle(['even', 'odd'], loop.index0) }}">
-                        {{loop.index0 + 1}}. {{value.author}} ({{value.publishedAt}}) | {{value.title}} | {{value.url}} | {{value.description}}
+                        {{loop.index0 + 1}}. {{value.author}} ({{value.publishedAt}}) | {{value.title}}
+                        | {{ value.description|length > 50 ? value.description|slice(0, 50) ~ '...' : value.description }}
+                        <a href="{{value.url}}" class="text-primary" target="_blank">read more</a>
                     </li>
                 {% endfor %}
             </ul>
